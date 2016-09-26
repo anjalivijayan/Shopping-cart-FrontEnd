@@ -1,0 +1,63 @@
+<style type="text/css">
+.aa {
+width:550px;
+height: 365px;
+background-color: rgba(0,255,255,0.1);
+margin: 0 auto;
+margin-top: 104px;
+padding-top: 3px;
+text-align: center;
+border-radius: 15px;
+-webkit-border-radius: 15px;
+-o-border-radius: 15px;
+-moz-border-radius: 15px;
+color: white;
+font-weight: bolder;
+box-shadow: inset -4px -4px 4px 4px rgba(0,255,255,0.1);
+font-size: 19px;
+}
+
+.aa input[type="text"]{
+width: 200px;
+height: 35px;
+border: 0;
+border-radius: 5px;
+-webkit-border-radius: 5px;
+-o-border-radius: 5px;
+-moz-border-radius: 5px;
+text-align: center;
+}
+.aa input[type="password"]{
+width: 200px;
+height: 35px;
+border: 0;
+border-radius: 5px;
+-webkit-border-radius: 5px;
+-o-border-radius: 5px;
+-moz-border-radius: 5px;
+text-align: center;
+}
+.aa input[type="submit"]{
+width: 200px;
+height: 35px;
+border: 0;
+border-radius: 5px;
+background-color: #BDFCC9	;
+font-weight: bolder;
+cursor: pointer;
+}
+
+.aa input[type="text"]:hover{
+color: white; 
+background-color:#000026 ;
+}
+.aa input[type="password"]:hover{
+color: white; 
+background-color:#000026 ;
+}
+.aa input[type="submit"]:hover{
+color: white; 
+background-color:#100000 ;
+}
+
+</style>
