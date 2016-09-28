@@ -40,35 +40,40 @@ rel="stylesheet">
 <body>
 
 <center>
-		<h1>  Dream home on the way......... </h1>
+		<h2>  Dream home on the way......... </h2>
 		</center>
 		
 
 
 <header>
 	<body>
+	<div class="logo pull-left">
+							<a href=""><img
+								src="resources/images/logo.jpg" alt="" /></a>
+							</div>
 		<div id="nav">
 			<br>
+			
 			<div id="nav_wrapper">
 				<br>
 				<ul>
-					
+				
+					 
 					<li><a href="#">Contact</a></li>
-					<li><a href="#">About Us</a></li>
+					<li><a href="#">About Us</a></li> 
 					
 				</ul>
 			</div>
+			
+			
 
 		</div>
 	</body>
 	</header>
 	
-	<div class="logo pull-left">
-							<a href=""><img
-								src="resources/images/logo.jpg" alt="" /></a>
-</div>
 	
-	 <table width="100%">
+	
+	  <table width="100%">
 				<tr>
 					<c:choose>
 						<c:when test="${empty loggedInUser}">
@@ -91,7 +96,7 @@ rel="stylesheet">
 						<td>${logoutMessage}</td>
 					</c:if>
 				</tr>
-				</table>
+				</table> 
 							
 				<div id="registerHere">
 				<c:if test="${isUserClickedRegisterHere==true}">
@@ -140,9 +145,9 @@ rel="stylesheet">
 					</c:if>
 				</div>
 				
-			<c:if test="${userClickedCartHere==true}">
+			<!--<c:if test="${userClickedCartHere==true}">
 			<%@ include file="Cart.jsp"%>	
-			</c:if>
+			</c:if>-->
 				
 					
 			</div>
@@ -194,6 +199,11 @@ rel="stylesheet">
 		</a>
   		</div>
 		</div>
+		<footer>
+
+	<p>This is my shopping website for Home Decor</p><br><br><br><br><br>
+
+	</footer>
 				
 
 </body>
