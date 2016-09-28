@@ -32,7 +32,7 @@
 </action-state>
 
 
-<end-state id="returnToController" view="externalRedirect:user/register" />
+<end-state id="returnToController" view="externalRedirect:users/register" />
 
 
 <end-state id="toHome" view="externalRedirect:contextRelative:index.jsp" />

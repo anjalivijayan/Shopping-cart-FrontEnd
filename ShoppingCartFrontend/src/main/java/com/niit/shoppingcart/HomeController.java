@@ -51,6 +51,9 @@ public class HomeController {
 	@NotNull
 	@Autowired(required = true)
 	private SupplierDAO supplierDAO;
+	
+	@Autowired
+	UserDetails userDetails;
 
 	
 	
@@ -58,7 +61,7 @@ public class HomeController {
 	@NotNull
 	@Autowired
 	
-	UserDetailsDAO uDao;
+	UserDetailsDAO userDetailsDAO;
 	List<UserDetails> allu;
  
 	/*@RequestMapping("/")
@@ -110,7 +113,7 @@ public String test(){
 		
 	}*/
 	
-	@RequestMapping(value = "user/register", method = RequestMethod.GET)
+	/*/@RequestMapping(value = "user/register", method = RequestMethod.GET)
 	public ModelAndView registerUser(@ModelAttribute("userDetails") UserDetails userDetails) {
 		
 		log.info("User object going to be registered has user id: " + userDetails.getId());
@@ -120,7 +123,37 @@ public String test(){
 		mv.addObject("successMessage", "You are successfully register");
 		
 		return mv;
-	}
+	}*/
+	
+	
+	/*@RequestMapping(value = "users/register", method = RequestMethod.GET)
+	public ModelAndView registerUser(HttpSession session){
+		log.debug("Start method register user");
+		log.info("User object going to be registered has user id: " + userDetails.getId());
+		System.out.println(userDetails.getId()+"000000000000000000000");
+		userDetails.setRole("ROLE_USER");
+		UserDetails userDetails = (UserDetails) session.getAttribute("userDetails");
+		userDetailsDAO.saveOrUpdate(userDetails);
+		ModelAndView mv = new ModelAndView("redirect:/");
+		mv.addObject("SuccessMessage", "You are successfully registered");
+		log.debug("End method register user");
+		return mv;
+		
+	}*/
+
+@RequestMapping(value = "users/register", method = RequestMethod.GET)
+public ModelAndView registerUser(HttpSession session) {
+	log.debug("Start: method registerUser");
+	log.info("User object going to be registered has user id: " + userDetails.getId());
+	userDetails.setRole("ROLE_USER");
+	UserDetails userDetails =  (UserDetails) session.getAttribute("userDetails");
+	userDetailsDAO.saveOrUpdate(userDetails);
+	ModelAndView mv = new ModelAndView("redirect:/");
+	mv.addObject("successMessage", "You are successfully register");
+
+	log.debug("End: method registerUser");
+	return mv;
+}
 	
 	
 	@RequestMapping("/allproducts")
@@ -145,7 +178,7 @@ public String test(){
 	public ModelAndView Userlist()
 	{
 		ModelAndView mv= new ModelAndView("UserList");
-		allu=uDao.list();
+		allu=userDetailsDAO.list();
 		mv.addObject("userList", allu);
 		return mv;
 	}

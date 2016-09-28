@@ -32,7 +32,7 @@
 				
 						<form:form modelAttribute="userDetails" method="post">
 						
-					  
+					  	<form:hidden path="id"/>
 						<form:input path="id" disabled="true" readonly="true" />
 							
 								<form:input path="name" disabled="true" readonly="true" />
