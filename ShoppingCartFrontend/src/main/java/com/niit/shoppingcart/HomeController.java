@@ -150,7 +150,7 @@ public ModelAndView registerUser(HttpSession session) {
 }
 	*/
 	
-	@RequestMapping("/allproducts")
+	/*@RequestMapping("/allproducts")
 	public void getallproducts()
 	{
 		allproducts=productDAO.list();
@@ -158,7 +158,7 @@ public ModelAndView registerUser(HttpSession session) {
 		{
 			System.out.println(p.getName());
 		}
-	}
+	}*/
 	
 	@RequestMapping("/registerHere")
 	public ModelAndView register(@ModelAttribute("userDetails")UserDetails ud )
@@ -168,14 +168,14 @@ public ModelAndView registerUser(HttpSession session) {
 	return mv;
 	}
 	
-	@RequestMapping("/UserList")
+	/*@RequestMapping("/UserList")
 	public ModelAndView Userlist()
 	{
 		ModelAndView mv= new ModelAndView("UserList");
 		allu=userDetailsDAO.list();
 		mv.addObject("userList", allu);
 		return mv;
-	}
+	}*/
 	
 	
 	@RequestMapping("/loginHere")
