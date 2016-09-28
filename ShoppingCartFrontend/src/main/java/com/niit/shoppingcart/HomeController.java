@@ -64,13 +64,7 @@ public class HomeController {
 	UserDetailsDAO userDetailsDAO;
 	List<UserDetails> allu;
  
-	/*@RequestMapping("/")
 	
-	public String home()
-	{
-		return "Home";
-		
-	}*/
 	
 	@RequestMapping("/")
 	
@@ -126,22 +120,22 @@ public String test(){
 	}*/
 	
 	
-	/*@RequestMapping(value = "users/register", method = RequestMethod.GET)
+	@RequestMapping(value = "users/register", method = RequestMethod.GET)
 	public ModelAndView registerUser(HttpSession session){
 		log.debug("Start method register user");
 		log.info("User object going to be registered has user id: " + userDetails.getId());
 		System.out.println(userDetails.getId()+"000000000000000000000");
 		userDetails.setRole("ROLE_USER");
 		UserDetails userDetails = (UserDetails) session.getAttribute("userDetails");
-		userDetailsDAO.saveOrUpdate(userDetails);
+		userDetailsDAO.save(userDetails);
 		ModelAndView mv = new ModelAndView("redirect:/");
 		mv.addObject("SuccessMessage", "You are successfully registered");
 		log.debug("End method register user");
 		return mv;
 		
-	}*/
+	}
 
-@RequestMapping(value = "users/register", method = RequestMethod.GET)
+/*@RequestMapping(value = "users/register", method = RequestMethod.GET)
 public ModelAndView registerUser(HttpSession session) {
 	log.debug("Start: method registerUser");
 	log.info("User object going to be registered has user id: " + userDetails.getId());
@@ -154,7 +148,7 @@ public ModelAndView registerUser(HttpSession session) {
 	log.debug("End: method registerUser");
 	return mv;
 }
-	
+	*/
 	
 	@RequestMapping("/allproducts")
 	public void getallproducts()
