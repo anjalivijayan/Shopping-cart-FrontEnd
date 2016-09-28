@@ -35,11 +35,11 @@
 						<c:forEach items="${cartList}" var="cart">
 						<tr>
 							<td class="cart_product">
-								<a href=""><img src="<c:url value = 'E:\Sutta\Work\shoppingcart\img\id${cart.product.id}.jpg"' />" alt=""></a>
+								<a href=""><img src="<c:url value = 'D:\\shoppingcart\\images\\id${cart.product.id}.jpg"' />" alt=""></a>
 							</td>
 							<td class="cart_description">
 								<h4><a href="">${cart.product.name}</a></h4>
-								<p>Web ID: 1089772</p>
+								
 							</td>
 							<td class="cart_price">
 								<p>Rs.${cart.price}</p>
@@ -92,12 +92,10 @@
 							<li class="single_field">
 								<label>Country:</label>
 								<select>
-									<option>United States</option>
-									<option>Bangladesh</option>
+									<option>USA</option>
 									<option>UK</option>
 									<option>India</option>
 									<option>Pakistan</option>
-									<option>Ucrane</option>
 									<option>Canada</option>
 									<option>Dubai</option>
 								</select>
@@ -111,7 +109,6 @@
 									<option>London</option>
 									<option>Dillih</option>
 									<option>Lahore</option>
-									<option>Alaska</option>
 									<option>Canada</option>
 									<option>Dubai</option>
 								</select>

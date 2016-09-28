@@ -54,14 +54,14 @@ public class CartController {
 		model.addAttribute("userClickedCartHere", true);
 		model.addAttribute("category", new Category());
 		model.addAttribute("categoryList", categoryDAO.list());
-		//cart = cartDAO.getByUserId(user.getId());
+		cart = cartDAO.getByUserId(user.getId());
 		model.addAttribute("cart", cart);
 		model.addAttribute("cartList", cartDAO.userCartList(user.getId()));
 		System.out.println(cartDAO.getTotalAmount(user.getId()));
 		model.addAttribute("totalAmount", cartDAO.getTotalAmount(user.getId())); 
 		model.addAttribute("displayCart", "true");
 		log.debug("End: method myCart");
-		return "/home";
+		return "/Home";
 	}
 
 	
@@ -134,14 +134,14 @@ public class CartController {
 		model.addAttribute("cartList", cartDAO.userCartList(user.getId()));
 		model.addAttribute("totalAmount", cartDAO.getTotalAmount(user.getId()));
 		log.debug("End: method editCart");
-		return "home";
+		return "Home";
 	}
 	
 	@RequestMapping("checkOut/confirm")
 	public String confirm(Model model,HttpSession session) {
 	UserDetails user = (UserDetails) session.getAttribute("user");
 		cartDAO.checkOut(user.getId());
-		return "home";
+		return "Home";
 	}
 }
 	

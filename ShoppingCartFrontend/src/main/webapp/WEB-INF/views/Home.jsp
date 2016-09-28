@@ -145,11 +145,14 @@ rel="stylesheet">
 					</c:if>
 				</div>
 				
-			<!--<c:if test="${userClickedCartHere==true}">
+		<c:if test="${userClickedCartHere==true}">
 			<%@ include file="Cart.jsp"%>	
-			</c:if>-->
+			</c:if>
+			
+		<c:if test="${userClickedCheckOut==true}">
+	<%@ include file="checkout.jsp"%>
 				
-					
+			</c:if>		
 			</div>
 				<div id="welcomemsg">
 				<c:if test="${welcometrue==true}">
