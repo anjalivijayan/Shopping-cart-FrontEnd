@@ -5,13 +5,15 @@
 <html>
 
 <body>
+<center>
+<a href=""><img src="resources/images/admin.png" alt="" /></a>
 	<div id="AdminHome">
 		<a href="manageCategories">Manage Categories</a> &nbsp; &nbsp;
 		<a href="manageSuppliers">Manage Suppliers</a>  &nbsp; &nbsp; 
 		<a href="manageProducts">Manage Products</a> &nbsp; &nbsp;
 
 	</div>
-
+</center>
 
 </body>
 </html>

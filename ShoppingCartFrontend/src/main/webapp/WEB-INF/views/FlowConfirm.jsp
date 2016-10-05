@@ -14,6 +14,7 @@
 </head>
 <body>
 
+
 	<div class="jumbotron">
 	<section id="form">
 		<!--form-->
@@ -63,7 +64,7 @@
 	<!--/form-->
 
 </div>
-
+<a href=""><img src="resources/images/thank.jpg" alt="" /></a>
 
 </body>
 </html>

@@ -39,12 +39,6 @@ rel="stylesheet">
 </head>
 <body>
 
-<center>
-		<h2>  Dream home on the way......... </h2>
-		</center>
-		
-
-
 <header>
 	<body>
 	<div class="logo pull-left">
@@ -86,6 +80,7 @@ rel="stylesheet">
 						
 						<c:when test="${not empty loggedInUser}">
 							<td>Welcome ${loggedInUser},</td>
+							
 							<td align="right"><a href="logout"> logout</a></td>
 						</c:when>
 
@@ -122,7 +117,9 @@ rel="stylesheet">
 					
 
 				</c:if>
-				
+				<c:if test="${isUser==true}">
+				<%@ include file="userhome.jsp"%>
+					</c:if>
 				<div id="categories">
 					<c:if test="${isAdminClickedCategories==true}">
 						<%@ include file="/WEB-INF/views/AdminHome.jsp"%>
@@ -145,9 +142,17 @@ rel="stylesheet">
 					</c:if>
 				</div>
 				
+				<c:if test="${userClickedLoginHere==true}">
+				<a href="Cart?uid="+${loggedInUser} >My cart<i class="fa fa-shopping-cart"></i></a></li>
+				
+				</c:if>
+			
+				<div id = "Cart">
 		<c:if test="${userClickedCartHere==true}">
-			<%@ include file="Cart.jsp"%>	
+		<%@ include file="Cart.jsp" %>
+			
 			</c:if>
+			</div>
 			
 		<c:if test="${userClickedCheckOut==true}">
 	<%@ include file="checkout.jsp"%>
@@ -205,7 +210,7 @@ rel="stylesheet">
 		<footer>
 
 	<p>This is my shopping website for Home Decor</p><br><br><br><br><br>
-
+<%@ include file="/WEB-INF/views/productlist.jsp"%>
 	</footer>
 				
 

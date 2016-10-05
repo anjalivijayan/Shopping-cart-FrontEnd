@@ -5,6 +5,8 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.Session;
+
 /*import javax.servlet.http.HttpSession;*/
 
 import org.slf4j.Logger;
@@ -17,13 +19,17 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.niit.shoppingcart.dao.CartDAO;
 import com.niit.shoppingcart.dao.CategoryDAO;
 import com.niit.shoppingcart.dao.ProductDAO;
 import com.niit.shoppingcart.dao.SupplierDAO;
 import com.niit.shoppingcart.dao.UserDetailsDAO;
+import com.niit.shoppingcart.model.Cart;
 import com.niit.shoppingcart.model.Category;
 import com.niit.shoppingcart.model.Product;
 import com.niit.shoppingcart.model.Supplier;
@@ -54,6 +60,14 @@ public class HomeController {
 	
 	@Autowired
 	UserDetails userDetails;
+	
+	
+	@Autowired
+	
+	private Cart cart;
+	
+	@Autowired(required = true)
+	private CartDAO cartDAO;
 
 	
 	
@@ -120,7 +134,7 @@ public String test(){
 	}*/
 	
 	
-	@RequestMapping(value = "users/register", method = RequestMethod.GET)
+	/*@RequestMapping(value = "users/register", method = RequestMethod.GET)
 	public ModelAndView registerUser(HttpSession session){
 		log.debug("Start method register user");
 		log.info("User object going to be registered has user id: " + userDetails.getId());
@@ -133,7 +147,36 @@ public String test(){
 		log.debug("End method register user");
 		return mv;
 		
+	}*/
+List<Product> plist=null;
+
+@RequestMapping("/p")
+public @ResponseBody String getValues()
+{	
+	System.out.println("dsds");
+	plist=productDAO.list();
+	Gson gson=new Gson();
+	String result= gson.toJson(plist);
+	return result;
+	//return "login";
+	 
 	}
+	
+	@RequestMapping(value = "users/register", method = RequestMethod.GET)
+	public ModelAndView registerUser(HttpSession session) {
+		log.debug("Start: method registerUser");
+		log.info("User object going to be registered has user id: " + userDetails.getId());
+		userDetails.setRole("ROLE_USER");
+		UserDetails userDetails = (UserDetails) session.getAttribute("userDetails");
+		userDetailsDAO.saveOrUpdate(userDetails);
+		ModelAndView mv = new ModelAndView("redirect:/");
+		mv.addObject("successMessage", "You are successfully register");
+
+		log.debug("End: method registerUser");
+		return mv;
+	}
+	
+	
 
 /*@RequestMapping(value = "users/register", method = RequestMethod.GET)
 public ModelAndView registerUser(HttpSession session) {
@@ -192,8 +235,8 @@ public ModelAndView registerUser(HttpSession session) {
 	@RequestMapping(value = "productadd")
 	public String addProduct(@ModelAttribute("product") Product product) {
 		
-		
-		Category category = categoryDAO.getByName(product.getName());
+		String newID = Util.removeComma(product.getId());
+		/*Category category = categoryDAO.getByName(product.getName());
 		categoryDAO.save(category); 
         
         System.out.println("ghi");
@@ -208,8 +251,8 @@ public ModelAndView registerUser(HttpSession session) {
 		//product.setSupplier_ID(supplier.getId());
 		  
 		  String newID = Util.removeComma(product.getId());
-		  System.out.println("ghi2");
-		productDAO.save(product);
+		  System.out.println("ghi2");*/
+		productDAO.saveOrUpdate(product);
 		MultipartFile file = product.getImage();
 		
 		FileUtil.upload(path, file,"id"+product.getId()+".jpg");
@@ -260,5 +303,27 @@ public ModelAndView registerUser(HttpSession session) {
 		return "redirect:/product";
 	}
 
-
+	@RequestMapping(value = "/Cart")
+	public String myCart(Model model, HttpSession session) {
+		log.debug("Start: method myCart");
+		//ModelAndView mv=new ModelAndView("Home");
+		
+		UserDetails userDetails =(UserDetails) session.getAttribute("user");
+		System.out.println("anjaliiiiiiiii"+userDetails);
+		log.info("\n*************\nuserID is {}\n*************\n", userDetails.getId());
+		model.addAttribute("userClickedCartHere", true);
+		model.addAttribute("category",new Category());
+		model.addAttribute("isUser", true);
+		model.addAttribute("categoryList", categoryDAO.list());
+		cart = cartDAO.getByUserId(userDetails.getId());
+		model.addAttribute("cart", cart);
+		model.addAttribute("cartList", cartDAO.userCartList(userDetails.getId()));
+		System.out.println(cartDAO.getTotalAmount(userDetails.getId()));
+		model.addAttribute("totalAmount", cartDAO.getTotalAmount(userDetails.getId())); 
+		model.addAttribute("displayCart", "true");
+		log.debug("End: method myCart");
+		return "/Home";
+	}
+	
+	
 }

@@ -48,7 +48,7 @@ public class CategoryController {
 		ModelAndView mv= new ModelAndView();
 		if(categoryDAO.get(category.getId())==null)
 		{
-			categoryDAO.save(category);
+			categoryDAO.saveOrUpdate(category);
 			
 		}
 		else
@@ -60,47 +60,52 @@ public class CategoryController {
 		return "redirect:/categories";
 	}
 	
-	@RequestMapping("category/remove/{id}")
 	
-	public ModelAndView deleteCategory(@PathVariable("id") String id)throws Exception{
-		
-		category=categoryDAO.get(id);
-		ModelAndView mv = new ModelAndView("category");
-		if(category==null)
-		{
-			mv.addObject("errormsg","Could not delete the category");
-			
-		}
-		else
-		{
+	
+	@RequestMapping(value = "category/remove/{id}")
+	public String deleteCategories(@PathVariable("id") String id,ModelMap model) {
+		log.debug("Start: method deleteCategories");
+		log.info("Category id going to be deleted : " +id);
+		try {
 			categoryDAO.delete(category);
+			model.addAttribute("message", "Successfully Added");
+		} catch (Exception e) {
+			model.addAttribute("message", e.getMessage());
+			e.printStackTrace();
 		}
 		
-		
-		
-		//boolean flag= categoryDAO.delete(id);
-		//ModelAndView mv= new ModelAndView("category");
-		String msg= "Successfully done the operation";
-		//if(flag!=true)
-		//{
-		//	msg="The operation could not success";
-			
-		//}
-		//mv.addObject("msg", msg);
-		return mv;
+		log.debug("End: method deleteCategories");
+		return "redirect:/categories";
 	}
 	
-	@RequestMapping(value = "category/edit/{name}")
-	public String editCategories(@PathVariable("name") String id,ModelMap model) {
+	@RequestMapping(value = "category/edit/{id}")
+	public String editCategories(@PathVariable("id") String id,ModelMap model) {
 		log.debug("Start of method editCategories");
 		log.info("Category id going to be edited : " +id);
 		category=categoryDAO.get(id);
+		//categoryDAO.update(category);
 		model.addAttribute("category", category);
 		model.addAttribute("categoryList", categoryDAO.list());
 		log.debug("End of method editCategories");
 
 		return "redirect:/categories";
 }
+	/*@RequestMapping(value = "category/edit/{name}")
+	public String editCategories(@PathVariable("name") String name,ModelMap model) {
+		log.debug("Start: method deleteCategories");
+		log.info("Category id going to be edited : " +name);
+		try {
+			categoryDAO.update(category);
+			model.addAttribute("message", "Successfully Added");
+		} catch (Exception e) {
+			model.addAttribute("message", e.getMessage());
+			e.printStackTrace();
+		}
+		
+		log.debug("End: method deleteCategories");
+		return "redirect:/categories";
+	}
+	*/
 	
 	
 

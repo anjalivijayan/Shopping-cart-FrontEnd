@@ -27,7 +27,9 @@
 					</form:label></td>
 				<c:choose>
 					<c:when test="${!empty category.id}">
-						<td><form:input path="id" disabled="true" readonly="true" />
+						<td>
+						
+						<form:input path="id" disabled="true" readonly="true" />
 						</td>
 					</c:when>
 
@@ -46,7 +48,9 @@
 				<td><form:label path="description">
 						<spring:message text="Description" />
 					</form:label></td>
-				<td><form:input path="description" required="true" /></td>
+				<td><form:input path="description" required="true" />
+				<form:hidden path="id"/>
+				</td>
 			</tr>
 			<tr>
 				<td colspan="2"><c:if test="${!empty category.name}">

@@ -14,7 +14,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2>Sign In </h2>
+<center>
+	<a href=""><img src="resources/images/reg.jpg" alt="" /></a><br><br>
+	
 	
 	<form:form modelAttribute="userDetails" >
 							<form:input path="id" pattern=".{4,7}" title="id should contains 4 to 7 characters" 
@@ -62,12 +64,12 @@
 							
 							<button name="_eventId_submit" type="submit" class="btn btn-default">Register</button>
 						</form:form>
-					</div>
+					</div> <br>
 					<!--/sign up form-->
 				</div>
 			</div>
 		</div>
-
-
+<a href=""><img src="resources/images/programmer.gif" alt="" /></a>
+</center>
 </body>
 </html>
