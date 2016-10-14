@@ -236,6 +236,7 @@ public ModelAndView registerUser(HttpSession session) {
 	public String addProduct(@ModelAttribute("product") Product product) {
 		
 		String newID = Util.removeComma(product.getId());
+		product.setId(newID);
 		/*Category category = categoryDAO.getByName(product.getName());
 		categoryDAO.save(category); 
         
@@ -323,6 +324,24 @@ public ModelAndView registerUser(HttpSession session) {
 		model.addAttribute("displayCart", "true");
 		log.debug("End: method myCart");
 		return "/Home";
+	}
+	
+	@RequestMapping("cart/remove/{id}")
+	public String removeCart(@PathVariable("id") String id, ModelMap model) throws Exception {
+		log.debug("Start: method removeCart");
+		System.out.println("deleteeee"+id);
+		cart = cartDAO.get(id);
+
+		//try {
+			cartDAO.delete(cart);
+			model.addAttribute("message", "Successfully removed");
+		//} catch (Exception e) {
+			//model.addAttribute("message", e.getMessage());
+			//e.printStackTrace();
+		//}
+		// redirectAttrs.addFlashAttribute(arg0, arg1)
+		log.debug("End: method removeCart");
+		return "redirect:/Cart";
 	}
 	
 	

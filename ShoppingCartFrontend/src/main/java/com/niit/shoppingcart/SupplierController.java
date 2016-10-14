@@ -47,6 +47,7 @@ private static Logger log = LoggerFactory.getLogger(CategoryController.class) ;
 	{
 		
 		String newID = Util.removeComma(supplier.getId());
+		supplier.setId(newID);
 		log.debug("Start of the method addsupplier");
 		
 		

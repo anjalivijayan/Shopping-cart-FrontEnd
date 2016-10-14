@@ -45,6 +45,7 @@ public class CategoryController {
 		log.debug("Start of the method addcategory");
 		
 		String newID = Util.removeComma(category.getId());
+		category.setId(newID);
 		ModelAndView mv= new ModelAndView();
 		if(categoryDAO.get(category.getId())==null)
 		{

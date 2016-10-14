@@ -10,7 +10,7 @@
 
 <li>
 
-<a href="Cart">My cart</a>
+<!--  <a href="Cart">My cart</a>-->
 
 
 </body>

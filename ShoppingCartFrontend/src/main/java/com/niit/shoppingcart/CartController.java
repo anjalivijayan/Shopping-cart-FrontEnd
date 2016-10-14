@@ -67,7 +67,7 @@ public class CartController {
 		cart.setQuantity(1);
 		cart.setUser(userDetails); // id should keep session and
 							// use the same id
-		cart.setStatus("available"); //
+		cart.setStatus("N"); //
 		cartDAO.saveOrUpdate(cart);
 		// return "redirect:/views/home.jsp";
 		log.debug("End: method addToCart");
@@ -75,31 +75,17 @@ public class CartController {
 
 	}
 
-	@RequestMapping("cart/remove/{id}")
-	public String removeCart(@PathVariable("id") int id, ModelMap model) throws Exception {
-		log.debug("Start: method removeCart");
+	
 
-		try {
-			cartDAO.delete(id);
-			model.addAttribute("message", "Successfully removed");
-		} catch (Exception e) {
-			model.addAttribute("message", e.getMessage());
-			e.printStackTrace();
-		}
-		// redirectAttrs.addFlashAttribute(arg0, arg1)
-		log.debug("End: method removeCart");
-		return "redirect:/myCart";
-	}
-
-	@RequestMapping("cart/edit/{id}")
+/*	@RequestMapping("cart/edit/{id}")
 	public String editCart(@PathVariable("id") String user_id, Model model) {
 		log.debug("Start: method editCart");
 		System.out.println("editCart");
 		model.addAttribute("cart", this.cartDAO.getByUserId(user_id));
 		model.addAttribute("listCarts", this.cartDAO.list());
 		log.debug("End: method editCart");
-		return "myCart";
-	}
+		return "/Cart";
+	}*/
 
 	}
 

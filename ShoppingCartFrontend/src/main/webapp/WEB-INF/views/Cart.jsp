@@ -37,7 +37,6 @@
 				<td align="left">${cart.price}</td> &nbsp;
 				<th align="left">${cart.status}</th> &nbsp;
 				<th align="left">${cart.product.id}</th> &nbsp;
-				<td align="left"><a href="<c:url value='/cart/edit/${cart.id}' />">Edit</a></td> &nbsp; &nbsp;
 				<td align="left"><a href="<c:url value='/cart/remove/${cart.id}'  />">Delete</a></td> 
 				
 			</tr>

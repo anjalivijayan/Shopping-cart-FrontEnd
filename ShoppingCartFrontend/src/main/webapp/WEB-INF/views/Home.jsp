@@ -40,59 +40,83 @@ rel="stylesheet">
 <body>
 
 <header>
-	<body>
-	<div class="logo pull-left">
+	<div class="header-middle">
+			<!--header-middle-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="logo pull-left">
 							<a href=""><img
-								src="resources/images/logo.jpg" alt="" /></a>
-							</div>
-		<div id="nav">
-			<br>
-			
-			<div id="nav_wrapper">
-				<br>
-				<ul>
-				
-					 
-					<li><a href="#">Contact</a></li>
-					<li><a href="#">About Us</a></li> 
+								src="resources/images/logo.jpg" alt="Bootsshop" /></a>
+						</div>
+					</div>
 					
-				</ul>
+					
+				
+					<nav class="sidebar-menu slide-from-left">
+					<div class="nano">
+						<div class="content">
+							<nav class="responsive-menu">
+							<ul>
+								<li><a href="Home">Home</a></li>
+								<li class="menu-item-has-children"><a href="#">Category</a>
+									<ul class="sub-menu">
+										<li><a href="saree">Table</a></li>
+										<li><a href="lehenga">Bed</a></li>
+										<li><a href="gown">Chair</a></li>
+										<li><a href="salwars">Lamp</a></li>
+										
+
+									</ul></li>
+					
+					<div class="col-sm-8">
+						<div class="shop-menu pull-right">
+							
+										<div id = "myCart">
+											<c:if test="${userClickedCartHere==true}">
+											<%@ include file="Cart.jsp"%>	
+    										</c:if>
+    									</div> 
+						</div>
+					</div>
+				</div>
 			</div>
 			
 			
-
-		</div>
-	</body>
-	</header>
-	
-	
-	
-	  <table width="100%">
+	 <table width="100%">
 				<tr>
+				
 					<c:choose>
 						<c:when test="${empty loggedInUser}">
-							<td align="left">Existing User<a href="loginHere"> Login
-									</a></td>
+							<td align="left">Existing user<a href="loginHere"> Login
+									here</a></td>
 							<td align="center">New user<a href="member.obj">
 									Register here</a></td>
-						</c:when> 
-						
-						
+						</c:when>
 						<c:when test="${not empty loggedInUser}">
 							<td>Welcome ${loggedInUser},</td>
 							
+		<li><a href="myCart">myCart<i class="fa fa-shopping-cart"></i></a></li>
+										<!--  Cart<span class="badge">${cartSize}</span></a></li> -->
+										
 							<td align="right"><a href="logout"> logout</a></td>
 						</c:when>
 
 					</c:choose>
 				</tr>
+				
+				
+				
 				<tr>
 					<c:if test="${loggedOut==true}">
 						<td>${logoutMessage}</td>
 					</c:if>
 				</tr>
-				</table> 
-							
+				</table>
+				
+			
+					
+						
 				<div id="registerHere">
 				<c:if test="${isUserClickedRegisterHere==true}">
 				
@@ -108,15 +132,16 @@ rel="stylesheet">
 					<%@ include file="/WEB-INF/views/Login.jsp"%>
 
 				</c:if>
+				</div>
 				
 				<div id="AdminHome">
 
 				<c:if test="${isAdmin==true}">
 
 					<%@ include file="/WEB-INF/views/AdminHome.jsp"%>
-					
-
+				
 				</c:if>
+				</div>
 				<c:if test="${isUser==true}">
 				<%@ include file="userhome.jsp"%>
 					</c:if>
@@ -142,17 +167,39 @@ rel="stylesheet">
 					</c:if>
 				</div>
 				
-				<c:if test="${userClickedLoginHere==true}">
-				<a href="Cart?uid="+${loggedInUser} >My cart<i class="fa fa-shopping-cart"></i></a></li>
+				<!--<c:if test="${userClickedLoginHere==true}">
+				<a href="Cart?uid="+${loggedInUser} >My cart<i class="fa fa-shopping-cart"></i></a></li> </c:if>-->
 				
-				</c:if>
 			
-				<div id = "Cart">
-		<c:if test="${userClickedCartHere==true}">
-		<%@ include file="Cart.jsp" %>
 			
-			</c:if>
-			</div>
+			<div id="Table">
+		<c:if test="${isUserClickedTable==true }">
+			<%@ include file="Table.jsp"%>
+		</c:if>
+		</div>
+		
+		<div id="Chair">
+		<c:if test="${isUserClickedChair==true }">
+			<%@ include file="Chair.jsp"%>
+		</c:if>
+		</div>
+		
+		<div id="Bed">
+		<c:if test="${isUserClickedBed==true }">
+			<%@ include file="Bed.jsp"%>
+		</c:if>
+		</div>
+		
+		
+		<div id="Lamp">
+		<c:if test="${isUserClickedLamp==true }">
+			<%@ include file="Lamp.jsp"%>
+		</c:if>
+		</div>
+		
+		
+		
+		
 			
 		<c:if test="${userClickedCheckOut==true}">
 	<%@ include file="checkout.jsp"%>
